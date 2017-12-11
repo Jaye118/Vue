@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>todo</title>
+    <link rel="stylesheet" href="css/bootstrap.css"/>
+    <style>
+        ul li{list-style: none}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>todo</h1>
+        <div class="header">
+            <input type="checkbox" v-model="checkAll">
+            <input type="text" @keyup.13="addTodo" v-model="todo">
+        </div>
+        <ul class="list">
+            <li v-for="todo in todos">
+                <input type="checkbox" class="my-list" v-model="todo.selected">
+                <div class="list-content">
+                    <label class="label">{{todo.value}}</label>
+                    <input class="content" type="text" v-model="todo.value">
+                    <button class="button" @click="remove(todo)">X</button>
+                </div>
+            </li>
+        </ul>
+
+        <div class="footer">
+            <span>共选中</span>
+            <ul>
+                <li>all</li>
+                <li>active</li>
+                <li>completed</li>
+            </ul>
+            <button class="clear">clear completed</button>
+        </div>
+
+
+    </div>
+
+
+    <script src="../vue.js"></script>
+    <script src="../jquery-1.8.2.min.js"></script>
+    <script>
+        var vm = new Vue({
+            el:'.container',
+            data:{
+                todos:[],
+                todo:'',
+                checkAll:false
+
+            },
+            ready:function(){
+                $(document).on('mouseenter','.list li',function(){
+                    $(this).find('button').show();
+                })
+                $(document).on('mouseleave','.list li',function(){
+                    $(this).find('button').hide();
+                })
+            },
+            methods:{
+                addTodo:function(){
+                    this.todos.push({value:this.todo,selected:false});
+                    this.todo = '';
+                },
+                remove:function(todo){
+                    this.todos.$remove(todo)
+                }
+            },
+            computed:{
+                checkAll:{
+                    set:function(val){
+                        this.todos.forEach(function(){
+                            item.selected = val;
+                        })
+                    }
+                },
+
+
+            }
+        })
+    </script>
+</body>
+</html>

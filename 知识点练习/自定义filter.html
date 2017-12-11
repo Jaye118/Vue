@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+       {{"hello world" | capitalize}}
+       {{"hello world" | uppercase}}
+       {{"LELLO world" | lowercase}}
+       {{138.565565 | currency '英镑' 3}}
+
+    </div>
+
+    <script>
+        Vue.filter('capitalize',function(value,begin,end){
+           return value.slice(0,begin).toUpperCase()+value.slice(begin)
+        });
+        var vm = new Vue({
+            el:'#app'
+        })
+
+
+    </script>
+</body>
+</html>

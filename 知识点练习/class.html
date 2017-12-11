@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .color{
+            color:red;
+        }
+        .background{
+            background: green;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div :class="class1">8545</div>
+        <div :class="class2">8545</div>
+        <div :class="{color:true,background:true}">5555</div>
+        <div :class="[class1,class2]">555555555555</div>
+
+        <!--对象和数组同时使用-->
+        <div :class="[class1,{'background':true}]"></div>
+
+        <!--在数组里使用三元表达式-->
+        <div :class="[false?class1:'my1',{'background':true}]">hhhhhhh</div>
+
+        <div :style="{background:'red',color:'yellow'}">gargre</div>
+
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                class1:'color',
+                class2:'background'
+            }
+        })
+
+
+    </script>
+</body>
+</html>

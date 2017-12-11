@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+    <div id="app">
+        <!-- v-on -->
+        <div v-on:click="add" >点我
+        </div>
+    </div>
+
+    <script src="../vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                src:'http://cn.vuejs.org/images/logo.png.',
+                href:'http://www.baidu.com'
+            },
+            methods:{
+                add:function(){
+                    alert(555)
+                }
+            }
+        });
+
+
+    </script>
+</body>
+</html>

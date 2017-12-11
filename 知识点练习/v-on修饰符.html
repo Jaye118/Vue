@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+    <div id="app">
+        <div @click.self = "parent">
+            parent
+            <div>middle</div>
+            <div @click.stop="child">child</div>
+        </div>
+    </div>
+
+    <script src="../vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            methods:{
+                parent:function (){
+                    alert('父级')
+                },
+                child:function(){
+                    alert('孩子')
+                }
+            }
+        })
+
+
+    </script>
+</body>
+</html>

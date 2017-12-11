@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+    <div id="app">
+        <!--绑定动态属性-->
+        <!--可直接使用：号的方式-->
+        <img v-bind:src="{{src}}" alt=""/>
+
+    </div>
+
+    <script src="../vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                src:'http://cn.vuejs.org/images/logo.png.'
+
+            }
+
+        });
+
+
+    </script>
+</body>
+</html>

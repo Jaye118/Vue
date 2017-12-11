@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div id="app">
+        {{message.name}}
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+        //1 不能将原数据指向新数据否则不能刷新视图
+        /*var mess = {
+            name:1
+        };
+
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                message:mess
+            }
+        });*/
+
+        //mess.name = 100;
+        //当前实例的vm和mess这个对象指向的是同一内存空间
+        //alert ( vm.message == mess );
+
+        // 不能将原数据mess指向新的数据，视图不会刷新，页面仍显示1
+        mess = { name:2 };
+
+
+        //2 实例创建后不能设置以前没有的属性，无法映射到视图
+        // Vue.set vm.$set可以给对象添加属性
+        var mess = {
+            name:1
+        };
+
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                message:mess
+            }
+        });
+        mess.age = 100;
+
+    </script>
+</body>
+
+</html>

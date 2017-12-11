@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+    <div id="app">
+        <template v-for="(key,m) in message">
+            {{key}}:{{m}}
+
+        </template>
+    </div>
+
+    <script src="../vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                message:{
+                    name:'hhhh',
+                    age: 7
+                }
+
+            }
+
+        });
+
+
+    </script>
+</body>
+</html>

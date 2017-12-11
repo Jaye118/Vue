@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>图书管理</title>
+    <link rel="stylesheet" href="../css/bootstrap.css"/>
+</head>
+<body>
+<div id="app1" class="container">
+    <table class="table table-bordered">
+        <tr>
+        <th>书名</th>
+        <th>价格</th>
+        <th>数量</th>
+        <th>小计</th>
+        <th>操作</th>
+    </tr>
+    <tr v-for="book in books">
+        <td>{{book.name}}</td>
+        <td>{{book.price}}</td>
+        <td>
+            <button @click="book.count--">-</button>
+            <input type="text" v-model="book.count"/>
+            <button @click="book.count++">+</button>
+        </td>
+        <td>{{book.price*book.count}}</td>
+        <td><button class="btn btn-danger" @click="remove(book)">删除</button></td>
+
+    </tr>
+        <tr>
+            <td colspan="5">总价:{{total}}</td>
+        </tr>
+    </table>
+    <div class="form-group">
+        <label for="bookname" class="control-label">书名</label>
+        <input type="text" v-model="list.name" id="bookname" class="form-control"/>
+    </div>
+    <div class="form-group">
+        <label for="bookprice" class="control-label">价格</label>
+        <input type="text" v-model="list.price" id="bookprice" class="form-control"/>
+    </div>
+    <div class="form-group">
+        <label for="bookcount" class="control-label">数量</label>
+        <input type="text" v-model="list.count" id="bookcount" class="form-control"/>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-primary" @click="add">添加</button>
+    </div>
+</div>
+
+
+<script src="../../vue.js"></script>
+<script>
+    var vn = new Vue({
+        el:'#app1' ,
+        data:{
+            books:[
+                {name:'vue书',price:40,count:1},
+                {name:'node书',price:50,count:1},
+                {name:'angular书',price:100,count:1},
+                {name:'js书',price:400,count:1}
+            ],
+            list:{
+                name:'',
+                price:'',
+                count:''
+            }
+        },
+        methods:{
+            remove(book){
+            //$remove()方法已被移除
+                this.books = this.books.filter((item)=>{
+                    return item != book
+                })
+            },
+            add:function(){
+                this.books.push(this.list);
+                this.list = {
+                    name:'',
+                    price:'',
+                    count:''
+                }
+            }
+        },
+        computed:{
+            total(){
+                var sum = 0;
+                this.books.forEach(item=>{
+                    sum+=this.price*this.count
+                });
+                return sum;
+            }
+        }
+    })
+</script>
+</body>
+</html>
