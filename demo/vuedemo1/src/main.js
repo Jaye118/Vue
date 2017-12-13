@@ -7,6 +7,7 @@ import VueResource from 'vue-resource'
 import IndexPage from './pages/index'
 
 Vue.use(VueRouter);
+Vue.use(VueResource);
 let router = new VueRouter({
   mode:'history',
   routes: [
