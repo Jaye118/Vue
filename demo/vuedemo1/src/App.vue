@@ -12,7 +12,6 @@
 import Apple from './components/apple'
 import Banana from './components/banana'
 
-
 export default {
   name: 'app',
   components: {Apple,Banana},
