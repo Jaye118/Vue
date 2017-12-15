@@ -25,7 +25,7 @@
           </div>
         </div>
         <div class="index-right">
-            <slide-show :slides="slides"></slide-show>
+            <slide-show :slides="slides" :inv="slideSpeed" @onchange="doSomethingOnSlideChange"></slide-show>
             <div class="index-board-list">
                 <div class="index-board-item"
                 v-for="(item,index) in boardList"
@@ -59,9 +59,15 @@ export default {
            console.log(err)
       })
   },
+  methods:{
+      //当图片切换时触发的事件
+      doSomethingOnSlideChange(){
+          console.log("run")
+      }
+  },
   data () {
     return {
-      invTime:2000,
+      slideSpeed:2000,
       slides: [
         {
           src: require('../assets/slideShow/pic1.jpg'),
