@@ -6,7 +6,7 @@
         <div class="g-form-input">
           <input type="text" v-model="usernameModel" placeholder="请输入用户名">
         </div>
-        <!--<span class="g-form-error">{{ userErrors.errorText }}</span>-->
+        <span class="g-form-error">{{ userErrors.errorText }}</span>
       </div>
       <div class="g-form-line">
         <span class="g-form-label">密码：</span>
@@ -31,11 +31,23 @@ export default {
     return {
       usernameModel: '',
       passwordModel: ''
-
     }
   },
   computed: {
-
+      userErrors(){
+          let status,errorText;
+          if(!/@/g.test(this.usernameModel)){
+              status = false;
+              errorText = '不包含@'
+          }else{
+              status = true;
+              errorText = ''
+          }
+          return {
+              status,
+              errorText
+          }
+      }
   },
   methods: {
       onLogin () {
