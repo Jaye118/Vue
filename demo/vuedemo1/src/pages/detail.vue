@@ -1,28 +1,26 @@
 <template>
-    <div class="detail-wrap">
-        <div class="detail-left">
-          <div class="product-board">
-            <img src="../assets/images/1.png">
-            <ul>
-              <router-link v-for="item in products" :to="{ path: item.path }" tag="li" active-class="active">
-                {{ item.name }}
-              </router-link>
-            </ul>
-          </div>
-        </div>
-        <div class="detail-right">
-          <keep-alive>
-            <router-view></router-view>
-          </keep-alive>
-        </div>
+  <div class="detail-wrap">
+    <div class="detail-left">
+      <div class="product-board">
+        <img :src="productIcon">
+        <ul>
+          <router-link v-for="item in products" :to="{ path: item.path }" tag="li" active-class="active">
+            {{ item.name }}
+          </router-link>
+        </ul>
       </div>
+    </div>
+    <div class="detail-right">
+      <keep-alive>
+        <router-view></router-view>
+      </keep-alive>
+    </div>
+  </div>
 </template>
 
 <script>
-
-import slideShow from '../components/slideShow'
 export default {
- data () {
+  data () {
     return {
       products: [
         {
@@ -55,6 +53,11 @@ export default {
       }
     }
   },
+  computed: {
+    productIcon () {
+      return this.imgMap[this.$route.path]
+    }
+  }
 }
 </script>
 
