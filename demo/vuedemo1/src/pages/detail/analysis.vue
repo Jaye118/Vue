@@ -101,8 +101,8 @@
           </tr>
         </table>
         <h3 class="buy-dialog-title">请选择银行</h3>
-        <bank-chooser></bank-chooser>
-        <div class="button buy-dialog-btn">
+        <bank-chooser @on-change="onChangeBanks"></bank-chooser>
+        <div class="button buy-dialog-btn" @click="confirmBuy">
           确认购买
         </div>
       </my-dialog>
@@ -110,7 +110,8 @@
       <my-dialog :is-show="isShowErrDialog">
         支付失败！
       </my-dialog>
-      <check-order :is-show-check-dialog="isShowCheckOrder" :order-id="orderId"></check-order>
+
+      <check-order :is-show-check-dialog="isShowCheckOrder" @on-close-check-dialog="hideCheckOrder" :order-id="orderId"></check-order>
   </div>
 </template>
 
@@ -121,7 +122,7 @@ import VChooser from '../../components/base/chooser'
 import VMulChooser from '../../components/base/multiplyChooser'
 import Dialog from '../../components/base/dialog'
 import BankChooser from '../../components/bankChooser'
-//import CheckOrder from '../../components/checkOrder'
+import CheckOrder from '../../components/checkOrder'
 //引入loadash(npm安装)
 import _ from 'lodash'
 export default {
@@ -132,7 +133,7 @@ export default {
     VMulChooser,
     MyDialog: Dialog,
     BankChooser,
-    //CheckOrder
+    CheckOrder
   },
   data () {
     return {
@@ -200,6 +201,21 @@ export default {
           this.isShowPayDialog = true;
       },
       hidePayDialog(){
+          this.isShowPayDialog = false;
+      },
+      hideErrDialog(){
+          this.isShowErrDialog = false;
+      },
+      hideCheckOrder(){
+          this.isShowCheckOrder = false;
+      },
+      onChangeBanks(bankObj){
+          this.bankId = bankObj.id;
+          console.log(this.bankId);
+      },
+      confirmBuy(){
+          console.log('确定购买-发送后台')
+          this.isShowCheckOrder = true;
           this.isShowPayDialog = false;
       }
   },

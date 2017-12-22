@@ -4,13 +4,13 @@
       <div class="g-form-line" v-for="formLine in formData">
         <span class="g-form-label">{{ formLine.label }}：</span>
         <div class="g-form-input">
-          <input type="text" 
+          <input type="text"
           v-model="formLine.model" placeholder="请输入用户名">
         </div>
       </div>
       <div class="g-form-line">
         <div class="g-form-btn">
-          <a class="button" @click="onLogin">登录</a>
+          <a class="button" @click="onLogin">注册</a>
         </div>
       </div>
     </div>
@@ -24,7 +24,7 @@ export default {
   },
   data () {
     return {
-      
+
     }
   },
   computed: {
