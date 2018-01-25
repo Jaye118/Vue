@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+
+    </style>
+    <script src="../vue.js"></script>
+    <script>
+
+    </script>
+</head>
+<body>
+<div id="box">
+
+    {{a | date}}
+
+</div>
+<script>
+    Vue.filter('date',function(input){
+        var odate = new Date(input);
+        return odate.getFullYear() + '-' + (odate.getMonth() + 1) + '-' + (odate.getDate())
+                + ' ' + odate.getHours() + ":" + odate.getMinutes() + ":" + odate.getSeconds() ;
+    });
+    var vm = new Vue({
+        data:{
+            a:Date.now()
+        },
+        methods:{
+
+        }
+    }).$mount('#box');
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

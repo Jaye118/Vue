@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+
+    </style>
+    <script src="../vue.js"></script>
+    <script>
+
+    </script>
+</head>
+<body>
+<div id="box">
+
+    {{a | toDou}}
+
+</div>
+<script>
+    Vue.filter('toDou',function(input){
+        return input<10?'0'+input:''+input;
+    });
+    var vm=new Vue({
+        data:{
+            a:9
+        },
+        methods:{
+
+        }
+    }).$mount('#box');
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
