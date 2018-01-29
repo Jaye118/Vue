@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div id="app">
+
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+        let obj = {
+            html:"<div>hhhhhhhhhhh</div>"//可信赖的html
+        };
+
+        var vm = new Vue({
+            el:'#app',
+            data:obj,
+            render:function(createElement){
+                return createElement(
+                        "ul",
+                        [
+                            createElement("li",1),
+                            createElement("li",2),
+                            createElement("li",3)
+                        ]
+                )
+            }
+        });
+
+
+    </script>
+</body>
+</html>
