@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div id="app">
+        <div v-html="html"></div>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+        let obj = {
+            html:"<div>hhhhhhhhhhh</div>"//可信赖的html
+        };
+
+        var vm = new Vue({
+            el:'#app',
+            data:obj
+        });
+
+
+    </script>
+</body>
+</html>
