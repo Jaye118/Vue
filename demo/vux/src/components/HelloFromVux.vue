@@ -1,21 +1,20 @@
 <template>
   <div>
 
-
-
     <group>
-      <h1 >dfgdfg</h1>
-      <x-switch title="Default popup" v-model="show"></x-switch>
-      <x-switch title="Full popup" v-model="show1"></x-switch>
-      <x-switch title="Multi popup (first)" v-model="show3"></x-switch>
-      <x-switch title="Mask disable" v-model="show5"></x-switch>
-      <x-switch title="Popup address" v-model="show6"></x-switch>
-      <x-button title="default max-height=100%" v-model="show12"></x-button>
-      <x-switch title="set max-height=50%" v-model="show13"></x-switch>
-
+      <h1 >vux-demo</h1>
+      <p>模态框</p>
       <cell @click.native="show12 = true"  inline-desc='公务宝账号'></cell>
+      <cell
+        :border-intent="false"
+        :arrow-direction="showContent002 ? 'up' : 'down'"
+        @click.native="showContent002 = !showContent002"></cell>
+
+        <cell-form-preview :border-intent="false" :list="list2"></cell-form-preview>
+
     </group>
 
+    <!-- 模态框 -->
     <div v-transfer-dom>
       <popup v-model="show12" position="bottom">
         <group>
@@ -28,13 +27,27 @@
     </div>
 
 
+    <card>
+      <div slot="conten" class="card-padding">
+        <p>dfadfad</p>
+        <p>dfadfad</p>
+        <p>dfadfad</p>
+      </div>
+    </card>
 
+    <card>
+      <img slot="header" src="http://placeholder.qiniudn.com/640x300" style="width:100%;display:block;">
+      <div slot="content" class="card-padding">
+        <p style="color:#999;font-size:12px;">Posted on January 21, 2015</p>
+        <p style="font-size:14px;line-height:1.2;">Quisque eget vestibulum nulla. Quisque quis dui quis ex ultricies efficitur vitae non felis. Phasellus quis nibh hendrerit..</p>
+      </div>
+    </card>
 
   </div>
 </template>
 
 <script>
-import { TransferDom, Popup, Group, Cell, XButton, XSwitch, Toast, XAddress, ChinaAddressData } from 'vux'
+import { TransferDom, Popup, Group, Cell, XButton, XSwitch, Toast, XAddress, ChinaAddressData, CellFormPreview,Card } from 'vux'
 
 export default {
   directives: {
@@ -47,7 +60,9 @@ export default {
     XSwitch,
     Toast,
     XAddress,
-    XButton
+    XButton,
+    CellFormPreview,
+    Card
   },
   data () {
     return {
@@ -67,18 +82,49 @@ export default {
       show10: false,
       show11: false,
       show12: false,
-      show13: false
+      show13: false,
+      list2: [{
+        label: 'Apple',
+        //value: '3.29'
+      }, {
+        label: 'Banana',
+        //value: '1.04'
+      }, {
+        label: 'Fish',
+        //value: '8.00'
+      }],
+      money: null,
+      showContent001: false,
+      showContent002: false,
     }
   }
 }
 </script>
 
-<style>
+<style lang="less" scoped>
+@import '~vux/src/styles/1px.less';
 .vux-demo {
   text-align: center;
 }
 .logo {
   width: 100px;
   height: 100px
+}
+.card-demo-flex {
+  display: flex;
+}
+.card-demo-content01 {
+  padding: 10px 0;
+}
+.card-padding {
+  padding: 15px;
+}
+.card-demo-flex > div {
+  flex: 1;
+  text-align: center;
+  font-size: 12px;
+}
+.card-demo-flex span {
+  color: #f74c31;
 }
 </style>
