@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!-- import CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+  <style>
+  div{
+    padding: 10px;
+    width: 50px;
+    margin-bottom: 10px
+  }
+	.tab-btn{background-color:pink;}
+	.n-tab-btn{background-color:#ccc;}
+  </style>
+</head>
+<body>
+	<div id="app">
+      
+      <div type="success" style="margin-right: 10px;" :class="[ gid == pre.id ? 'tab-btn':'n-tab-btn']" @click="fn(pre)" v-for="pre in tab">{{pre.name}}</div>
+
+	</div>
+	
+
+
+</body>
+  <!-- import Vue before Element -->
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <!-- import JavaScript -->
+  <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+  <script>
+
+
+    new Vue({
+      el: '#app',
+      data: function() {
+        return { 
+          tab:[{name:'1',id:1},{name:'2',id:2}],
+          gid:0
+		    }
+      },
+      methods: {
+        fn(par){
+          
+          // if (par.id == this.gid){
+          //   this.gid = 0
+          // } else {
+          //   this.gid = par.id
+          // }
+           
+          this.gid = par.id == this.gid ? 0 : par.id;
+           
+        }
+      }
+    })
+  </script>
+</html>
