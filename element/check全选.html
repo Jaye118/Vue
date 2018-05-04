@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!-- import CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+  <style>
+	.tab-btn{background-color:#ccc;}
+	.n-tab-btn{background-color:pink;}
+  </style>
+</head>
+<body>
+	<div id="app">
+    <el-checkbox v-if="checkboxs.length>0" label="0" v-model="checkAll" @change="" >全部</el-checkbox>
+    <el-checkbox-group v-model="chelist" @change="fAll" style="display: inline-block;">
+            <template v-for="item in checkboxs" >
+                    <el-checkbox :label="item.name">{{item.name}}</el-checkbox>
+            </template>  
+    </el-checkbox-group>
+
+	</div>
+	
+
+
+</body>
+  <!-- import Vue before Element -->
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <!-- import JavaScript -->
+  <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: function() {
+        return { 
+          checkAll: false,
+          chelist:[], // 选中集合
+          checkboxs: [
+            {name: 1},
+            {name: 2},
+            {name: 3},
+            {name: 4}
+          ]
+
+		    }
+      },
+      methods: {
+        fAll(){
+          let that = this;
+          var checkboxs = that.checkboxs;
+          var chelist = that.chelist;
+          if(checkboxs.length != chelist.length){
+            that.checkAll = false
+          } else {
+            that.checkAll = true
+          }
+        }
+      
+      }
+    })
+  </script>
+</html>
