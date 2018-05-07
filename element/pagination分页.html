@@ -5,31 +5,18 @@
   <!-- import CSS -->
   <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
   <style>
-    .eye-img{
-      vertical-align: middle;
-			cursor: pointer;
-    }
+ 
   </style>
 </head>
 <body>
 	<div id="app">
     <div>
-      <table class="">
-          <tr>
-              <th>手机号</th>
-          </tr>
-          <template v-for="(oitem,oIndex) in tableData">
-              <tr>
-                  <td :style="{display:[oitem.show!='1'?'':'none']}">{{oitem.phoneNum|phoneFilter}}
-                      <img class="eye-img" v-if="oitem.phoneNum" src="img/i-eye-close.png" @click="fSeaEndPhone(oIndex,'1')">
-                  </td>
-                  <td :style="{display:[oitem.show=='1'?'':'none']}">{{oitem.phoneNum}}
-                      <img class="eye-img" v-if="oitem.phoneNum" src="img/i-eye-open.png" @click="fSeaEndPhone(oIndex,'0')">
-                  </td>
-              </tr>
-          </template>
-
-      </table>
+      <el-pagination
+              @current-change="pageChange"
+              layout="prev, pager, next"
+              :page-size="pageSize"
+              :total="count">
+      </el-pagination>
 
   </div>
 
@@ -45,6 +32,9 @@
       el: '#app',
       data: function() {
         return { 
+          count:0, // 总共条数
+          pageNo:1, // 当前页数
+          pageSize:2, // 每页显示的数据条数
 			    tableData: [{
                 wxNickname: 'dfadsg',
                 name: '王小虎',
@@ -64,20 +54,18 @@
           ]
 		    }
       },
-      filters: {
-        phoneFilter: function (input) {
-          debugger
-            if (input && input != "") {
-                return input.replace(/(\d{3})\d{4}(\d{3})/, "$1*****$2");
-            }
-          },
-        },
+      
+      created () {
+        let that = this;
+        that.count = that.tableData.length
+      },
+      
       methods: {
-        fSeaEndPhone(oindex, etype){
-            let temp = this.tableData;
-            temp[oindex].show = etype;
-            this.tableData = [];
-            this.tableData = temp;
+        pageChange(num){
+          let _This = this;
+			    _This.pageNo = num; // 当前选中的页数，需传给后台调接口 
+          console.log(num);
+			    // 调用获取数据的接口 _This.fn();
         },
       }
 
