@@ -11,7 +11,7 @@
 </head>
 <body>
 	<div id="app">
-    <el-checkbox v-if="checkboxs.length>0" label="0" v-model="checkAll" @change="" >全部</el-checkbox>
+    <el-checkbox v-if="checkboxs.length>0" label="0" v-model="checkAll" @change="fcheckAll" >全部</el-checkbox>
     <el-checkbox-group v-model="chelist" @change="fAll" style="display: inline-block;">
             <template v-for="item in checkboxs" >
                     <el-checkbox :label="item.name">{{item.name}}</el-checkbox>
@@ -35,13 +35,13 @@
           checkAll: false,
           chelist:[], // 选中集合
           checkboxs: [
-            {name: 1},
-            {name: 2},
-            {name: 3},
-            {name: 4}
+            {name: 1, id:1},
+            {name: 2, id:2},
+            {name: 3, id:3},
+            {name: 4, id:4}
           ]
 
-		    }
+		}
       },
       methods: {
         fAll(){
@@ -53,8 +53,22 @@
           } else {
             that.checkAll = true
           }
-        }
-      
+        },
+
+		fcheckAll (){
+			let _This = this;
+		    let chelist = _This.chelist;
+		    if (_This.checkAll) {
+				let checkboxs = _This.checkboxs;
+				checkboxs.forEach(item => {
+					if (chelist.indexOf(item.id) < 0) {
+						_This.chelist.push(item.id);
+					}
+				});
+		    } else {
+				_This.chelist = [];
+		    }
+		}
       }
     })
   </script>
